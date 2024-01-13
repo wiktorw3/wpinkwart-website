@@ -64,7 +64,7 @@ disableHugoGeneratorInject = false
   keywords = ""
   images = [""]
 
-  homeSubtitle = "Little bits of this, litte bytes of that."
+  homeSubtitle = "Law meets Tech meets Music"
 
   # Prefix of link to the git commit detail page. GitInfo must be enabled.
   # gitUrl = ""
@@ -98,7 +98,7 @@ disableHugoGeneratorInject = false
     themeLight = "#fafafa"
 
   [params.logo]
-    logoText     = "wpinkwart"
+    logoText     = "wpinkwart.com"
     logoHomeLink = "/"
     # Set true to remove the logo cursor entirely.
     # logoCursorDisabled = false
