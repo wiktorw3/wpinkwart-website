@@ -119,7 +119,7 @@ disableHugoGeneratorInject = false
     url  = "https://www.linkedin.com/in/wiktor-pinkwart-490751133/"
 
   [[params.social]]
-    name = "cv"
+    name = "twitter"
     url = "https://twitter.com/wpinkwart"
 
 [languages]
