@@ -9,6 +9,6 @@ tags = [
 categories = [
 ]
 [ author ]
-  name = "Jakub Duchniewicz"
+  name = "Wiktor Pinkwart"
 +++
 
