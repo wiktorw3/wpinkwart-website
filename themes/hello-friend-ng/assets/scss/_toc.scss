@@ -31,8 +31,14 @@ html, body {
     box-sizing: border-box;
 }
 
-ul, ol {
-    list-style: none;
+ul {
+    list-style-type: disc; /* This will add bullet points */
+    margin: 0;
+    padding: 0 0 0 1em; /* Adjust padding to align bullets */
+}
+
+ol {
+    list-style: none; /* Keeping ordered lists without style as per original */
     margin: 0;
     padding: 0;
 }
