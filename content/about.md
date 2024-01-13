@@ -8,22 +8,21 @@ date = "2024-01-07"
 ## [Welcome!](https://www.youtube.com/watch?v=rEq1Z0bjdwc)
 {{< image src="/me_wp.jpg" alt="Picture of me!" position="center" style="border-radius: 8px" >}}
 
-Hey, I'm **Wiktor Pinkwart**. Born in Warsaw, but with a global outlook \
-My journey has taken me to live for more than 1 year in the Netherlands, Australia, the UK, and back to Poland, giving me a truly international perspective.
+Hey, I'm **Wiktor Pinkwart**. I grew up in Warsaw and have since called the Netherlands, Australia, and the UK my home at different times. Now back in Warsaw, but each of these experiences has uniquely contributed to my global perspective.
 
-## Academic Background:
+## Education:
 ---
-I studied European Law at Maastricht University. During a study exchange at ANU in Australia, I balanced interning at the Polish Embassy with co-founding a first student org diving into blockchain and web3. My thesis in 2018 tackled the tricky interplay between blockchain and the GDPR that has been taken effect at that time. That is when my passion for technology began to evolve.
+My academic journey started with European Law at Maastricht University. The highlight was my time at ANU in Australia, where I dived into the blockchain world and co-founded a student organization focused on blockchain and web3. My 2018 thesis on blockchain and GDPR, right when GDPR was taking effect, deepened my already growing passion for technology.
 
-## Professional Life:
+## Work:
 ---
-As part of my work, I'm navigating through Legal and Compliance challenges at a global fintech startup, **token.com**. I'm also the Co-Chair of a Privacy Working Group at **INATBA** (think-tank) where we advise EU regulators on blockchain regulations, including MiCA, TFR and AMLR.
+My professional responsibilities concern navigating through Legal and Compliance challenges at the global fintech - **token.com**. Alongside this, I serve as Co-Chair of the Privacy Working Group at **INATBA**, a think tank advising EU regulators on blockchain regulations, including MiCA, TFR and AMLR.
 
-## Creative Side:
+## Music:
 ---
-Outside of law and tech, I channel my creativity into music. I'm a song-writer and music producer, crafting tunes that I share on Spotify - *Departament Magii*. It's my way of blending analytical thinking with artistic expression. 
+Outside of law and tech, music is my creative escape. Crafting songs and producing tracks for Departament Magii on Spotify is how I explore another side of creativity, distinct from my professional life.
 
-## What is in here?
+## What to expect?
 ---
 In this space, I aim to share updates on:
 
