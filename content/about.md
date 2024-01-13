@@ -5,7 +5,7 @@ date = "2024-01-07"
   name = "Wiktor Pinkwart"
 +++
 
-## [Welcome!]
+## Welcome!
 {{< image src="/me_wp.jpg" alt="Picture of me!" position="center" style="border-radius: 8px" >}}
 
 Hey, I'm **Wiktor Pinkwart**. I grew up in Warsaw and have since called the Netherlands, Australia, and the UK my home at different times. Now back in Warsaw, but each of these experiences has uniquely contributed to my global perspective.
