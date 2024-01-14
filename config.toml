@@ -124,7 +124,7 @@ disableHugoGeneratorInject = false
 
 [languages]
   [languages.en.params]
-    subtitle  = "Personal space"
+    subtitle  = ""
     weight    = 1
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
