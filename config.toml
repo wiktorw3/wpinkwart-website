@@ -50,7 +50,6 @@ disableHugoGeneratorInject = false
   category = "categories"
 
 [params]
-  author.name = "Wiktor Pinkwart"
   dateform        = "Jan 2, 2006"
   dateformShort   = "Jan 2"
   dateformNum     = "2006-01-02"
@@ -84,6 +83,9 @@ disableHugoGeneratorInject = false
   defaultTheme = "dark"
   themeColorDark = "#252627"
   themeColorLight = "#fafafa"
+
+  [params.author]
+    name = "Wiktor Pinkwart"
 
   # Colors for favicons
   [params.favicon.color]
