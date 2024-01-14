@@ -36,9 +36,6 @@ disableHugoGeneratorInject = false
 [permalinks]
   posts = "/posts/:year/:month/:title/"
 
-[author]
-  name = "Wiktor Pinkwart"
-
 [markup]
     defaultMarkdownHandler = "goldmark"
     [markup.goldmark]
@@ -53,6 +50,7 @@ disableHugoGeneratorInject = false
   category = "categories"
 
 [params]
+  author.name = "Wiktor Pinkwart"
   dateform        = "Jan 2, 2006"
   dateformShort   = "Jan 2"
   dateformNum     = "2006-01-02"
@@ -111,16 +109,24 @@ disableHugoGeneratorInject = false
     url  = "mailto:wiktor.pinkwart@gmail.com"
 
   [[params.social]]
-    name = "github"
-    url  = "https://github.com/wiktorw3"
-
-  [[params.social]]
     name = "linkedin"
     url  = "https://www.linkedin.com/in/wiktor-pinkwart-490751133/"
 
   [[params.social]]
-    name = "twitter"
+    name = "X"
     url = "https://twitter.com/wpinkwart"
+
+  [[params.social]]
+    name = "github"
+    url  = "https://github.com/wiktorw3"
+
+  [[params.social]]
+    name = "spotify"
+    url  = "https://open.spotify.com/artist/27WVHOlo6ZMacI8ybOKRLp?si=cRlWPU_VTaOGS764tvcNvA"
+
+  
+
+  
 
 [languages]
   [languages.en.params]
