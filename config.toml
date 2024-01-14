@@ -84,7 +84,7 @@ disableHugoGeneratorInject = false
   themeColorDark = "#252627"
   themeColorLight = "#fafafa"
 
-  [params.author]
+  [author]
     name = "Wiktor Pinkwart"
 
   # Colors for favicons
