@@ -23,6 +23,10 @@
     font-size: 1rem;
     color: $light-color-secondary;
 
+    & > *:not(:last-child)::after {
+      content: "•";
+      padding: 0 5px;
+      
     @media #{$media-size-tablet} {
       flex-direction: row;
       margin-top: 10px;
@@ -30,7 +34,7 @@
 
     & > *:not(:last-child)::after {
       content: "•";
-      padding: 0 10px;
+      padding: 0 5px;
 
       @media #{$media-size-tablet} {
           content: "";
@@ -42,7 +46,7 @@
       padding: 0 5px;
 
       @media #{$media-size-tablet} {
-          padding: 0;
+          padding: 0 5px;
       }
     }
   }
