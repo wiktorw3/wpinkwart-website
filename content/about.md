@@ -12,7 +12,7 @@ Hey, I'm **Wiktor Pinkwart**. I grew up in Warsaw and have since called the Neth
 
 ## Education:
 ---
-My academic journey started with European Law at Maastricht University. The highlight was my time at ANU in Australia, where I dived into the blockchain world and co-founded a student organization focused on blockchain and web3. My 2018 thesis on blockchain and GDPR, right when GDPR was taking effect, deepened my already growing passion for technology.
+My academic journey started with European Law at the Maastricht University. The highlight was my year-long student-exchange at ANU in Australia, where I interned at Polish Embassy and co-founded a student organization focused on blockchain and web3. My 2018 thesis on blockchain and GDPR, right when GDPR was taking effect, deepened my already growing passion for technology.
 
 ## Work:
 ---
@@ -20,7 +20,7 @@ My professional responsibilities concern navigating through Legal and Compliance
 
 ## Music:
 ---
-Outside of law and tech, music is my creative escape. Crafting songs and producing tracks for Departament Magii on Spotify is how I explore another side of creativity, distinct from my professional life.
+Outside of law and tech, music is my creative escape. I write and produce songs that you can find under the name **Departament Magii** on Spotify.
 
 ## What to expect?
 ---
