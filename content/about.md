@@ -8,30 +8,22 @@ date = "2024-01-07"
 ## Welcome!
 {{< image src="/me_wp.jpg" alt="Picture of me!" position="center" style="border-radius: 8px" >}}
 
-Hey, I'm **Wiktor Pinkwart**. I grew up in Warsaw and have since called the Netherlands, Australia, and the UK my home at different times. Now back in Warsaw, but each of these experiences has uniquely contributed to my global perspective.
+Hey, I'm **Wiktor Pinkwart**. I grew up in Warsaw and have since called the Netherlands, Australia, and the UK my home at different times. 
 
-## Education:
+## Education
 ---
-My academic journey started with European Law at the Maastricht University. The highlight was my year-long student-exchange at ANU in Australia, where I interned at Polish Embassy and co-founded a student organization focused on blockchain and web3. My 2018 thesis on blockchain and GDPR, right when GDPR was taking effect, deepened my already growing passion for technology.
+After finishing Batory High School in Warsaw, I moved to the Netherlands, where I studied European Law at Maastricht University. During my third year, I spent a year abroad at Australian National University.
 
-## Work:
+I wrote my bachelor thesis on blockchain and GDPR, interned at the Polish Embassy in Australia, and co-founded a student organization focused on blockchain and web3.
+
+## Work & Building
 ---
-My professional responsibilities concern navigating through Legal and Compliance challenges at the global fintech - **token.com**. Alongside this, I serve as Co-Chair of the Privacy Working Group at **INATBA**, a think tank advising EU regulators on blockchain regulations, including MiCA, TFR and AMLR.
+I began working in Compliance and Risk in London, advancing into roles such as MLRO, DPO, and Senior Compliance Officer, where I worked on scaling teams and building compliance systems in fintech environments.
 
-## Music:
+Over time, I became increasingly involved on the technical side of products — working with data, analytics, SQL, and Python — and began building my own tools and side projects. This led me into technical product management, with a focus on systems that are both compliant and functional.
+
+On the side, I contribute to open-source projects, take part in hackathons, and build **Wotum** — a product focused on making political data, voting records, and public decision-making easier to follow.
+
+## Music
 ---
-Outside of law and tech, music is my creative escape. I write and produce songs that you can find under the name **Departament Magii** on Spotify.
-
-## What to expect?
----
-In this space, I aim to share updates on:
-
-* Technology Explorations
-* Development of Tech Regulations
-* My Music Ventures
-
-**Keywords**: Law, Technology, Music
-
-[token.com]: https://www.token.com/
-[INATBA]: https://inatba.org/
-[Posts]: https://wpinkwart.com/posts/
+I also make music under the name **Departament Magii**.
