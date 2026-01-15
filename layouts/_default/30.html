@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    {{ partial "head.html" . }}
+    <style>
+        /* ============================================
+           PARTY PAGE STYLES - /30
+           ============================================ */
+        
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #151515;
+            --text-primary: #f5f5f5;
+            --text-secondary: #888;
+            --accent: #fff;
+            --error: #ff4444;
+            --success: #44ff44;
+            --border: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body.party-page {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .party-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+        }
+
+        /* Access Gate */
+        .access-gate {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .access-gate h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .code-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .code-input {
+            width: 60px;
+            height: 70px;
+            font-size: 2rem;
+            text-align: center;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            transition: border-color 0.2s, transform 0.1s;
+        }
+
+        .code-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .code-error {
+            color: var(--error);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            min-height: 1.5rem;
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: var(--accent);
+        }
+
+        .btn-calendar {
+            background: linear-gradient(135deg, #ffffff, #888888);
+            border: none;
+            color: #0a0a0a;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-calendar:hover {
+            background: linear-gradient(135deg, #888888, #ffffff);
+            color: #0a0a0a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Zagadka Section */
+        .zagadka-section {
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+
+        .zagadka-toggle {
+            width: 100%;
+            text-align: center;
+        }
+
+        .zagadka-panel {
+            display: none;
+            margin-top: 1.5rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        .zagadka-panel.open {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .zagadka-panel h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+        }
+
+        .move-section {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+        }
+
+        .move-section h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .move-section.twoj-ruch {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border);
+        }
+
+        .move-section.twoj-ruch h3 {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            letter-spacing: 0.1em;
+        }
+
+        .move-row {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .move-inputs-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .move-inputs {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .move-input {
+            width: 50px;
+            height: 50px;
+            font-size: 1.25rem;
+            text-align: center;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+        }
+
+        .move-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .move-section.twoj-ruch .move-input {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            border-width: 2px;
+        }
+
+        .image-placeholder {
+            flex: 1;
+            aspect-ratio: 1;
+            max-width: 120px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .puzzle-actions {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .puzzle-error {
+            color: var(--error);
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: 1rem;
+            min-height: 1.2rem;
+        }
+
+        /* Protected Content */
+        .protected-content {
+            display: none;
+        }
+
+        .protected-content.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .countdown-section {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+        }
+
+        .party-title {
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .countdown-timer {
+            font-size: 2.5rem;
+            font-weight: 200;
+            letter-spacing: 0.1em;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .countdown-ended {
+            font-size: 2rem;
+            color: var(--success);
+        }
+
+        /* Twój Ruch Section (after gate) */
+        .twoj-ruch-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .twoj-ruch-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .twoj-ruch-content h3 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .btn-large {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .hero-placeholder {
+            margin-top: 2rem;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 50%, #1a1a1a 100%);
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Success Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .modal-overlay.visible {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            animation: popIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-emoji {
+            font-size: 4rem;
+            animation: bounce 0.6s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0) scale(1);
+            }
+            to {
+                transform: translateY(-10px) scale(1.1);
+            }
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-top: 1rem;
+            letter-spacing: 0.2em;
+        }
+
+        /* Animated Modal */
+        .animated-modal {
+            overflow: visible;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .character-stage {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .character {
+            position: absolute;
+            opacity: 0;
+            transform: scale(0);
+            transition: none;
+            left: 50%;
+            top: 50%;
+        }
+
+        .character-noface {
+            width: 1100px;
+            height: auto;
+            left: 50%;
+            top: 50%;
+            transform-origin: center center;
+            filter: drop-shadow(0 0 30px rgba(255,255,255,0.4));
+            z-index: 10;
+        }
+
+        .character-chaplin {
+            width: 700px;
+            height: auto;
+            left: 50%;
+            top: 50%;
+            transform-origin: center center;
+            border-radius: 12px;
+            filter: grayscale(100%) drop-shadow(0 0 30px rgba(255,255,255,0.4));
+            z-index: 10;
+        }
+
+        .character-yinyang {
+            width: 600px;
+            height: 600px;
+            left: 50%;
+            top: 50%;
+            transform-origin: center center;
+            filter: drop-shadow(0 0 40px rgba(255,255,255,0.6));
+            z-index: 20;
+        }
+
+        /* Smooth crossfade for yinyang takeover */
+        .animated-modal .modal-emoji,
+        .animated-modal .modal-title {
+            transition: opacity 1s ease-out;
+        }
+
+        .animated-modal.yinyang-takeover .modal-emoji,
+        .animated-modal.yinyang-takeover .modal-title {
+            opacity: 0;
+        }
+
+        /* Character Animations */
+        @keyframes enterNoface {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -30%) scale(0);
+            }
+            40% {
+                opacity: 1;
+                transform: translate(-50%, -30%) scale(1);
+            }
+            60% {
+                transform: translate(-52%, -32%) scale(1.05);
+            }
+            80% {
+                transform: translate(-48%, -28%) scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -30%) scale(1.02);
+            }
+        }
+
+        @keyframes exitNoface {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -30%) scale(1.02);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.3);
+            }
+        }
+
+        @keyframes enterChaplin {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0) rotate(-10deg);
+            }
+            40% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1) rotate(5deg);
+            }
+            60% {
+                transform: translate(-48%, -50%) scale(1.05) rotate(-3deg);
+            }
+            80% {
+                transform: translate(-52%, -50%) scale(0.98) rotate(3deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1) rotate(0);
+            }
+        }
+
+        @keyframes exitChaplin {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -60%) scale(1.2);
+            }
+        }
+
+        @keyframes enterYinyang {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1) rotate(180deg);
+            }
+            70% {
+                transform: translate(-50%, -50%) scale(0.95) rotate(270deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1) rotate(360deg);
+            }
+        }
+
+        @keyframes yinyangTakeover {
+            0% {
+                transform: translate(-50%, -50%) scale(1) rotate(360deg);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(0.5) rotate(540deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0.25) rotate(720deg);
+            }
+        }
+
+        .character-noface.animate-enter {
+            animation: enterNoface 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .character-noface.animate-exit {
+            animation: exitNoface 0.6s ease-in forwards;
+        }
+
+        .character-chaplin.animate-enter {
+            animation: enterChaplin 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .character-chaplin.animate-exit {
+            animation: exitChaplin 0.6s ease-in forwards;
+        }
+
+        .character-yinyang.animate-enter {
+            animation: enterYinyang 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .character-yinyang.animate-takeover {
+            animation: yinyangTakeover 3.5s ease-in-out forwards;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .party-container {
+                padding: 1rem 0.75rem;
+            }
+
+            .access-gate {
+                padding: 2rem 0.5rem;
+            }
+
+            .access-gate h1 {
+                font-size: 1.6rem;
+                letter-spacing: 0.15em;
+            }
+
+            .code-inputs {
+                gap: 0.5rem;
+            }
+
+            .code-input {
+                width: 55px;
+                height: 65px;
+                font-size: 1.5rem;
+            }
+
+            .party-title {
+                font-size: 1.4rem;
+                letter-spacing: 0.1em;
+            }
+
+            .countdown-timer {
+                font-size: 1.6rem;
+            }
+
+            .move-row {
+                flex-direction: column;
+            }
+
+            .move-section {
+                padding: 0.75rem;
+            }
+
+            .image-placeholder {
+                max-width: 100%;
+                aspect-ratio: 16/9;
+            }
+
+            .twoj-ruch-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .twoj-ruch-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .twoj-ruch-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .btn-large {
+                width: 100%;
+                padding: 0.875rem 1.5rem;
+            }
+
+            .hero-placeholder {
+                margin-top: 1.5rem;
+            }
+
+            /* Modal mobile */
+            .modal-content {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+                max-width: calc(100vw - 2rem);
+            }
+
+            .modal-emoji {
+                font-size: 3rem;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .animated-modal {
+                min-height: 250px;
+            }
+
+            /* Character sizes for mobile - keep centered */
+            .character-noface {
+                width: 350px;
+                max-width: 120vw;
+            }
+
+            .character-chaplin {
+                width: 300px;
+                max-width: 100vw;
+            }
+
+            .character-yinyang {
+                width: 300px;
+                height: 300px;
+            }
+
+            .zagadka-panel {
+                padding: 1rem;
+            }
+
+            .zagadka-panel h2 {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .access-gate h1 {
+                font-size: 1.4rem;
+                letter-spacing: 0.1em;
+            }
+
+            .code-input {
+                width: 48px;
+                height: 58px;
+                font-size: 1.3rem;
+            }
+
+            .party-title {
+                font-size: 1.2rem;
+            }
+
+            .countdown-timer {
+                font-size: 1.4rem;
+            }
+
+            .character-noface {
+                width: 280px;
+            }
+
+            .character-chaplin {
+                width: 250px;
+            }
+
+            .character-yinyang {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        /* Hide default theme elements on this page */
+        .party-page .container,
+        .party-page .header,
+        .party-page .footer,
+        .party-page .scrollToTopBtn {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="party-page">
+    <!-- Access Gate -->
+    <div class="party-container">
+        <div class="access-gate" id="accessGate">
+            <h1>Kod Dostępu</h1>
+            
+            <div class="code-inputs">
+                <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" data-index="0" autocomplete="off">
+                <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" data-index="1" autocomplete="off">
+                <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" data-index="2" autocomplete="off">
+                <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" data-index="3" autocomplete="off">
+            </div>
+            
+            <div class="code-error" id="codeError"></div>
+            
+            <button class="btn" id="openBtn">Otwórz</button>
+
+            <!-- Zagadka Section - visible before unlock -->
+            <div class="zagadka-section">
+                <button class="btn zagadka-toggle" id="zagadkaToggle">Zagadka</button>
+                
+                <div class="zagadka-panel" id="zagadkaPanel">
+                    <h2>Zagadka</h2>
+                    
+                    <!-- Ruch Białych -->
+                    <div class="move-section">
+                        <h3>Ruch Białych</h3>
+                        <div class="move-row">
+                            <div class="move-inputs-group">
+                                <div class="move-inputs">
+                                    <input type="text" class="move-input" maxlength="1" id="whiteLetter" placeholder="A" autocomplete="off">
+                                    <input type="text" class="move-input" maxlength="1" inputmode="numeric" id="whiteNumber" placeholder="1" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="image-placeholder">Placeholder<br>image</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ruch Czarnych -->
+                    <div class="move-section">
+                        <h3>Ruch Czarnych</h3>
+                        <div class="move-row">
+                            <div class="move-inputs-group">
+                                <div class="move-inputs">
+                                    <input type="text" class="move-input" maxlength="1" id="blackLetter" placeholder="A" autocomplete="off">
+                                    <input type="text" class="move-input" maxlength="1" inputmode="numeric" id="blackNumber" placeholder="1" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="image-placeholder">Placeholder<br>image</div>
+                        </div>
+                    </div>
+                    
+                    <div class="puzzle-actions">
+                        <button class="btn btn-primary" id="checkPuzzle">Sprawdź</button>
+                    </div>
+                    <div class="puzzle-error" id="puzzleError"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Protected Content - shown after correct code -->
+        <div class="protected-content" id="protectedContent">
+            <div class="countdown-section">
+                <div class="party-title">Black & White Party</div>
+                <div class="countdown-timer" id="countdown"></div>
+            </div>
+
+            <!-- Twój Ruch Section -->
+            <div class="twoj-ruch-section">
+                <div class="twoj-ruch-content">
+                    <h3>Twój Ruch</h3>
+                    <a href="https://calendar.app.google/jowYgcvPGxCuagbq8" target="_blank" rel="noopener" class="btn btn-calendar btn-large">Potwierdź udział</a>
+                </div>
+            </div>
+            
+            <div class="hero-placeholder">
+                Hero image placeholder
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal (used for both code and puzzle) -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content animated-modal">
+            <div class="modal-emoji">🎉</div>
+            <div class="modal-title">Gratulacje!</div>
+            
+            <!-- Animated Characters -->
+            <div class="character-stage">
+                <img src="/noface.png" alt="No-Face" class="character character-noface" id="charNoface">
+                <img src="/chaplin.jpg" alt="Charlie Chaplin" class="character character-chaplin" id="charChaplin">
+                <img src="/yinyang.svg" alt="Yin Yang" class="character character-yinyang" id="charYinyang">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURATION - Change these values as needed
+        // ============================================
+        
+        // Access code for the gate (4 digits)
+        const ACCESS_CODE = "1234";
+        
+        // Correct puzzle answers (chess moves)
+        const WHITE_MOVE = { letter: "E", number: "4" };
+        const BLACK_MOVE = { letter: "E", number: "5" };
+        
+        // Countdown target: 7 February 2026, 20:00 Warsaw time (CET = UTC+1)
+        const COUNTDOWN_TARGET = new Date("2026-02-07T20:00:00+01:00");
+        
+        // ============================================
+        // ACCESS CODE LOGIC
+        // ============================================
+        
+        const codeInputs = document.querySelectorAll('.code-input');
+        const codeError = document.getElementById('codeError');
+        const openBtn = document.getElementById('openBtn');
+        const accessGate = document.getElementById('accessGate');
+        const protectedContent = document.getElementById('protectedContent');
+        const successModal = document.getElementById('successModal');
+        
+        let animationTimeout = null;
+        
+        // Click on modal to skip animation and go to party screen
+        successModal.addEventListener('click', () => {
+            if (animationTimeout) {
+                clearTimeout(animationTimeout);
+                animationTimeout = null;
+            }
+            closeAnimationModal();
+        });
+        
+        function closeAnimationModal() {
+            successModal.classList.remove('visible');
+            resetCharacterAnimation();
+            const modalContent = document.querySelector('.animated-modal');
+            if (modalContent) {
+                modalContent.classList.remove('yinyang-takeover');
+            }
+        }
+        
+        // Auto-advance focus and handle paste
+        codeInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                const value = e.target.value;
+                
+                // Handle paste of full code
+                if (value.length > 1) {
+                    const digits = value.replace(/\D/g, '').slice(0, 4);
+                    digits.split('').forEach((digit, i) => {
+                        if (codeInputs[i]) {
+                            codeInputs[i].value = digit;
+                        }
+                    });
+                    if (digits.length === 4) {
+                        checkAccessCode();
+                    } else if (codeInputs[digits.length]) {
+                        codeInputs[digits.length].focus();
+                    }
+                    return;
+                }
+                
+                // Only allow digits
+                if (!/^\d$/.test(value)) {
+                    e.target.value = '';
+                    return;
+                }
+                
+                // Auto-advance to next input
+                if (value && index < 3) {
+                    codeInputs[index + 1].focus();
+                }
+                
+                // Auto-check when all filled
+                if (index === 3 && value) {
+                    checkAccessCode();
+                }
+            });
+            
+            // Handle backspace
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    codeInputs[index - 1].focus();
+                }
+            });
+        });
+        
+        openBtn.addEventListener('click', checkAccessCode);
+        
+        function checkAccessCode() {
+            const enteredCode = Array.from(codeInputs).map(i => i.value).join('');
+            
+            if (enteredCode.length !== 4) {
+                codeError.textContent = 'Wprowadź 4 cyfry.';
+                return;
+            }
+            
+            if (enteredCode === ACCESS_CODE) {
+                // IMMEDIATELY hide the access gate
+                accessGate.style.display = 'none';
+                
+                // Prepare protected content BEHIND the modal (visible but under modal)
+                protectedContent.style.display = 'block';
+                protectedContent.classList.add('visible');
+                startCountdown();
+                
+                // Show success modal with animated sequence ON TOP
+                successModal.classList.add('visible');
+                startCharacterAnimation();
+                
+                // After 10 second animation, hide modal to reveal party screen
+                animationTimeout = setTimeout(() => {
+                    closeAnimationModal();
+                }, 10000);
+            } else {
+                // Wrong code
+                codeError.textContent = 'Zły kod, spróbuj ponownie.';
+                codeInputs.forEach(input => input.value = '');
+                codeInputs[0].focus();
+            }
+        }
+        
+        // ============================================
+        // ZAGADKA (PUZZLE) LOGIC
+        // ============================================
+        
+        const zagadkaToggle = document.getElementById('zagadkaToggle');
+        const zagadkaPanel = document.getElementById('zagadkaPanel');
+        const checkPuzzle = document.getElementById('checkPuzzle');
+        const puzzleError = document.getElementById('puzzleError');
+        
+        const whiteLetter = document.getElementById('whiteLetter');
+        const whiteNumber = document.getElementById('whiteNumber');
+        const blackLetter = document.getElementById('blackLetter');
+        const blackNumber = document.getElementById('blackNumber');
+        
+        zagadkaToggle.addEventListener('click', () => {
+            zagadkaPanel.classList.toggle('open');
+            zagadkaToggle.textContent = zagadkaPanel.classList.contains('open') ? 'Ukryj Zagadkę' : 'Zagadka';
+        });
+        
+        checkPuzzle.addEventListener('click', () => {
+            const wLetter = whiteLetter.value.toUpperCase();
+            const wNumber = whiteNumber.value;
+            const bLetter = blackLetter.value.toUpperCase();
+            const bNumber = blackNumber.value;
+            
+            const whiteCorrect = wLetter === WHITE_MOVE.letter.toUpperCase() && wNumber === WHITE_MOVE.number;
+            const blackCorrect = bLetter === BLACK_MOVE.letter.toUpperCase() && bNumber === BLACK_MOVE.number;
+            
+            if (whiteCorrect && blackCorrect) {
+                // Show success modal
+                successModal.classList.add('visible');
+                puzzleError.textContent = '';
+                
+                // Auto-close after 2 seconds
+                setTimeout(() => {
+                    successModal.classList.remove('visible');
+                }, 2000);
+            } else {
+                puzzleError.textContent = 'Nie tym razem — spróbuj jeszcze raz.';
+            }
+        });
+        
+        // Close modal on click
+        successModal.addEventListener('click', () => {
+            successModal.classList.remove('visible');
+        });
+        
+        // ============================================
+        // CHARACTER ANIMATION SEQUENCE
+        // ============================================
+        
+        const charNoface = document.getElementById('charNoface');
+        const charChaplin = document.getElementById('charChaplin');
+        const charYinyang = document.getElementById('charYinyang');
+        
+        function startCharacterAnimation() {
+            const modalContent = document.querySelector('.animated-modal');
+            
+            // Timeline: 10 seconds total
+            // 0-2s: No-Face appears huge, covering everything
+            // 2-2.5s: No-Face exits
+            // 2.5-4.5s: Chaplin appears huge
+            // 4.5-5s: Chaplin exits
+            // 5s: Yin Yang appears from bottom
+            // 6s: Yin Yang moves up, replaces success screen
+            // 6-10s: Yin Yang centered, spinning gently
+            
+            // No-Face enters at 0.3s
+            setTimeout(() => {
+                charNoface.classList.add('animate-enter');
+            }, 300);
+            
+            // No-Face exits at 2s
+            setTimeout(() => {
+                charNoface.classList.remove('animate-enter');
+                charNoface.classList.add('animate-exit');
+            }, 2000);
+            
+            // Chaplin enters at 2.5s
+            setTimeout(() => {
+                charChaplin.classList.add('animate-enter');
+            }, 2500);
+            
+            // Chaplin exits at 4.5s
+            setTimeout(() => {
+                charChaplin.classList.remove('animate-enter');
+                charChaplin.classList.add('animate-exit');
+            }, 4500);
+            
+            // Yin Yang enters at 5s
+            setTimeout(() => {
+                charYinyang.classList.add('animate-enter');
+            }, 5000);
+            
+            // Yin Yang takes over at 6s (hides emoji/title, moves to center)
+            setTimeout(() => {
+                modalContent.classList.add('yinyang-takeover');
+                charYinyang.classList.remove('animate-enter');
+                charYinyang.classList.add('animate-takeover');
+            }, 6000);
+        }
+        
+        function resetCharacterAnimation() {
+            const modalContent = document.querySelector('.animated-modal');
+            modalContent.classList.remove('yinyang-takeover');
+            charNoface.classList.remove('animate-enter', 'animate-exit');
+            charChaplin.classList.remove('animate-enter', 'animate-exit');
+            charYinyang.classList.remove('animate-enter', 'animate-takeover');
+        }
+        
+        // ============================================
+        // COUNTDOWN TIMER
+        // ============================================
+        
+        function startCountdown() {
+            const countdownEl = document.getElementById('countdown');
+            
+            function updateCountdown() {
+                const now = new Date();
+                const diff = COUNTDOWN_TARGET - now;
+                
+                if (diff <= 0) {
+                    countdownEl.innerHTML = '<span class="countdown-ended">Już trwa 🎉</span>';
+                    return;
+                }
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                countdownEl.textContent = `${days}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+    </script>
+</body>
+</html>
