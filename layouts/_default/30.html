@@ -279,13 +279,13 @@
         }
 
         .puzzle-image {
-            flex: 1;
-            max-width: 150px;
+            width: 150px;
             height: auto;
             border-radius: 8px;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
             border: 1px solid var(--border);
+            object-fit: contain;
         }
 
         .puzzle-image:hover {
@@ -821,12 +821,22 @@
                 font-size: 1.25rem;
             }
 
-            .puzzle-image {
-                max-width: 120px;
+            .move-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
             }
 
-            .move-row {
-                align-items: center;
+            .move-inputs-group {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .puzzle-image {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
             }
         }
 
