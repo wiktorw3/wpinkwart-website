@@ -255,6 +255,61 @@
             padding: 0.5rem;
         }
 
+        .puzzle-image {
+            flex: 1;
+            max-width: 150px;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border);
+        }
+
+        .puzzle-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(255,255,255,0.1);
+        }
+
+        /* Fullscreen Image Modal */
+        .fullscreen-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 1rem;
+        }
+
+        .fullscreen-modal.visible {
+            display: flex;
+        }
+
+        .fullscreen-modal img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .fullscreen-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+        }
+
         .puzzle-actions {
             text-align: center;
             margin-top: 1rem;
@@ -721,6 +776,14 @@
             .zagadka-panel h2 {
                 font-size: 1.25rem;
             }
+
+            .puzzle-image {
+                max-width: 120px;
+            }
+
+            .move-row {
+                align-items: center;
+            }
         }
 
         @media (max-width: 380px) {
@@ -796,11 +859,11 @@
                         <div class="move-row">
                             <div class="move-inputs-group">
                                 <div class="move-inputs">
-                                    <input type="text" class="move-input" maxlength="1" id="whiteLetter" placeholder="A" autocomplete="off">
+                                    <input type="text" class="move-input" maxlength="1" id="whiteLetter" placeholder="a" autocomplete="off">
                                     <input type="text" class="move-input" maxlength="1" inputmode="numeric" id="whiteNumber" placeholder="1" autocomplete="off">
                                 </div>
                             </div>
-                            <div class="image-placeholder">Placeholder<br>image</div>
+                            <img src="/ruch-bialych.jpg" alt="Ruch Białych" class="puzzle-image" onclick="openFullscreen(this)">
                         </div>
                     </div>
                     
@@ -810,11 +873,11 @@
                         <div class="move-row">
                             <div class="move-inputs-group">
                                 <div class="move-inputs">
-                                    <input type="text" class="move-input" maxlength="1" id="blackLetter" placeholder="A" autocomplete="off">
+                                    <input type="text" class="move-input" maxlength="1" id="blackLetter" placeholder="a" autocomplete="off">
                                     <input type="text" class="move-input" maxlength="1" inputmode="numeric" id="blackNumber" placeholder="1" autocomplete="off">
                                 </div>
                             </div>
-                            <div class="image-placeholder">Placeholder<br>image</div>
+                            <img src="/ruch-czarnych.jpg" alt="Ruch Czarnych" class="puzzle-image" onclick="openFullscreen(this)">
                         </div>
                     </div>
                     
@@ -847,6 +910,12 @@
         </div>
     </div>
 
+    <!-- Fullscreen Image Modal -->
+    <div class="fullscreen-modal" id="fullscreenModal" onclick="closeFullscreen()">
+        <button class="fullscreen-close" onclick="closeFullscreen()">&times;</button>
+        <img id="fullscreenImage" src="" alt="Fullscreen">
+    </div>
+
     <!-- Success Modal (used for both code and puzzle) -->
     <div class="modal-overlay" id="successModal">
         <div class="modal-content animated-modal">
@@ -870,9 +939,9 @@
         // Access code for the gate (4 digits)
         const ACCESS_CODE = "1234";
         
-        // Correct puzzle answers (chess moves)
-        const WHITE_MOVE = { letter: "E", number: "4" };
-        const BLACK_MOVE = { letter: "E", number: "5" };
+        // Correct puzzle answers (chess moves) - lowercase h2 for both
+        const WHITE_MOVE = { letter: "h", number: "2" };
+        const BLACK_MOVE = { letter: "h", number: "2" };
         
         // Countdown target: 7 February 2026, 20:00 Warsaw time (CET = UTC+1)
         const COUNTDOWN_TARGET = new Date("2026-02-07T20:00:00+01:00");
@@ -1009,13 +1078,13 @@
         });
         
         checkPuzzle.addEventListener('click', () => {
-            const wLetter = whiteLetter.value.toUpperCase();
+            const wLetter = whiteLetter.value.toLowerCase();
             const wNumber = whiteNumber.value;
-            const bLetter = blackLetter.value.toUpperCase();
+            const bLetter = blackLetter.value.toLowerCase();
             const bNumber = blackNumber.value;
             
-            const whiteCorrect = wLetter === WHITE_MOVE.letter.toUpperCase() && wNumber === WHITE_MOVE.number;
-            const blackCorrect = bLetter === BLACK_MOVE.letter.toUpperCase() && bNumber === BLACK_MOVE.number;
+            const whiteCorrect = wLetter === WHITE_MOVE.letter.toLowerCase() && wNumber === WHITE_MOVE.number;
+            const blackCorrect = bLetter === BLACK_MOVE.letter.toLowerCase() && bNumber === BLACK_MOVE.number;
             
             if (whiteCorrect && blackCorrect) {
                 // Show success modal
@@ -1098,6 +1167,31 @@
             charChaplin.classList.remove('animate-enter', 'animate-exit');
             charYinyang.classList.remove('animate-enter', 'animate-takeover');
         }
+        
+        // ============================================
+        // FULLSCREEN IMAGE
+        // ============================================
+        
+        const fullscreenModal = document.getElementById('fullscreenModal');
+        const fullscreenImage = document.getElementById('fullscreenImage');
+        
+        function openFullscreen(img) {
+            fullscreenImage.src = img.src;
+            fullscreenModal.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeFullscreen() {
+            fullscreenModal.classList.remove('visible');
+            document.body.style.overflow = '';
+        }
+        
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && fullscreenModal.classList.contains('visible')) {
+                closeFullscreen();
+            }
+        });
         
         // ============================================
         // COUNTDOWN TIMER
