@@ -129,6 +129,29 @@
             box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
         }
 
+        /* Pulsing animation for CTA button */
+        .btn-pulse {
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+
+        .btn-pulse:hover {
+            animation: none;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+        }
+
         /* Zagadka Section */
         .zagadka-section {
             margin-top: 2rem;
@@ -365,6 +388,27 @@
         .countdown-ended {
             font-size: 2rem;
             color: var(--success);
+        }
+
+        .event-details {
+            margin-top: 2rem;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .event-detail {
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .detail-label {
+            color: var(--text-secondary);
+            margin-right: 0.5rem;
+        }
+
+        .detail-value {
+            color: var(--text-primary);
+            font-weight: 500;
         }
 
         /* Twój Ruch Section (after gate) */
@@ -894,18 +938,29 @@
             <div class="countdown-section">
                 <div class="party-title">Black & White Party</div>
                 <div class="countdown-timer" id="countdown"></div>
+                
+                <div class="event-details">
+                    <div class="event-detail">
+                        <span class="detail-label">Kiedy:</span>
+                        <span class="detail-value">6 Lutego 20:00</span>
+                    </div>
+                    <div class="event-detail">
+                        <span class="detail-label">Gdzie:</span>
+                        <span class="detail-value">Wichrowa 7a/19, Warszawa</span>
+                    </div>
+                    <div class="event-detail">
+                        <span class="detail-label">Dresscode:</span>
+                        <span class="detail-value">Biel lub czerń</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Twój Ruch Section -->
             <div class="twoj-ruch-section">
                 <div class="twoj-ruch-content">
                     <h3>Twój Ruch</h3>
-                    <a href="https://calendar.app.google/jowYgcvPGxCuagbq8" target="_blank" rel="noopener" class="btn btn-calendar btn-large">Potwierdź udział</a>
+                    <a href="https://calendar.app.google/jowYgcvPGxCuagbq8" target="_blank" rel="noopener" class="btn btn-calendar btn-large btn-pulse">Potwierdź udział</a>
                 </div>
-            </div>
-            
-            <div class="hero-placeholder">
-                Hero image placeholder
             </div>
         </div>
     </div>
@@ -943,8 +998,8 @@
         const WHITE_MOVE = { letter: "h", number: "2" };
         const BLACK_MOVE = { letter: "h", number: "2" };
         
-        // Countdown target: 7 February 2026, 20:00 Warsaw time (CET = UTC+1)
-        const COUNTDOWN_TARGET = new Date("2026-02-07T20:00:00+01:00");
+        // Countdown target: 6 February 2026, 20:00 Warsaw time (CET = UTC+1)
+        const COUNTDOWN_TARGET = new Date("2026-02-06T20:00:00+01:00");
         
         // ============================================
         // ACCESS CODE LOGIC
