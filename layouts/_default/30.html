@@ -836,10 +836,10 @@
             <h1>Kod Dostępu</h1>
             
             <div class="code-inputs">
-                <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" data-index="0" autocomplete="off">
-                <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" data-index="1" autocomplete="off">
-                <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" data-index="2" autocomplete="off">
-                <input type="text" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" data-index="3" autocomplete="off">
+                <input type="text" class="code-input" maxlength="1" data-index="0" autocomplete="off">
+                <input type="text" class="code-input" maxlength="1" data-index="1" autocomplete="off">
+                <input type="text" class="code-input" maxlength="1" data-index="2" autocomplete="off">
+                <input type="text" class="code-input" maxlength="1" data-index="3" autocomplete="off">
             </div>
             
             <div class="code-error" id="codeError"></div>
@@ -936,8 +936,8 @@
         // CONFIGURATION - Change these values as needed
         // ============================================
         
-        // Access code for the gate (4 digits)
-        const ACCESS_CODE = "1234";
+        // Access code for the gate (4 characters)
+        const ACCESS_CODE = "H2H2";
         
         // Correct puzzle answers (chess moves) - lowercase h2 for both
         const WHITE_MOVE = { letter: "h", number: "2" };
@@ -980,26 +980,27 @@
         // Auto-advance focus and handle paste
         codeInputs.forEach((input, index) => {
             input.addEventListener('input', (e) => {
-                const value = e.target.value;
+                let value = e.target.value.toUpperCase();
+                e.target.value = value;
                 
                 // Handle paste of full code
                 if (value.length > 1) {
-                    const digits = value.replace(/\D/g, '').slice(0, 4);
-                    digits.split('').forEach((digit, i) => {
+                    const chars = value.slice(0, 4);
+                    chars.split('').forEach((char, i) => {
                         if (codeInputs[i]) {
-                            codeInputs[i].value = digit;
+                            codeInputs[i].value = char;
                         }
                     });
-                    if (digits.length === 4) {
+                    if (chars.length === 4) {
                         checkAccessCode();
-                    } else if (codeInputs[digits.length]) {
-                        codeInputs[digits.length].focus();
+                    } else if (codeInputs[chars.length]) {
+                        codeInputs[chars.length].focus();
                     }
                     return;
                 }
                 
-                // Only allow digits
-                if (!/^\d$/.test(value)) {
+                // Only allow alphanumeric
+                if (!/^[A-Z0-9]$/i.test(value)) {
                     e.target.value = '';
                     return;
                 }
@@ -1026,14 +1027,14 @@
         openBtn.addEventListener('click', checkAccessCode);
         
         function checkAccessCode() {
-            const enteredCode = Array.from(codeInputs).map(i => i.value).join('');
+            const enteredCode = Array.from(codeInputs).map(i => i.value.toUpperCase()).join('');
             
             if (enteredCode.length !== 4) {
-                codeError.textContent = 'Wprowadź 4 cyfry.';
+                codeError.textContent = 'Wprowadź 4 znaki.';
                 return;
             }
             
-            if (enteredCode === ACCESS_CODE) {
+            if (enteredCode === ACCESS_CODE.toUpperCase()) {
                 // IMMEDIATELY hide the access gate
                 accessGate.style.display = 'none';
                 
