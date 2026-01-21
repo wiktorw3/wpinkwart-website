@@ -1,4 +1,5 @@
 <meta charset="UTF-8">
+<title>{{ if .IsHome }}{{ $.Site.Title }}{{ else }}{{ .Title }}{{ end }}</title>
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="{{ if .Params.author }}{{ .Params.author }}{{ else }}{{ with .Site.Params.author }}{{ .name }}{{ end }}{{ end }}">
@@ -7,16 +8,6 @@
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="{{ cond (eq $.Site.Params.defaultTheme "dark") .Site.Params.themeColorDark .Site.Params.themeColorLight}}" />
 <link rel="canonical" href="{{ .Permalink }}" />
-
-{{ block "title" . }}
-    <title>
-        {{ if .IsHome }}
-            {{ $.Site.Title }}
-        {{ else }}
-            {{ .Title }}
-        {{ end }}
-    </title>
-{{ end }}
 
 <!-- CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
