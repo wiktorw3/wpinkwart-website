@@ -3,7 +3,7 @@
         <span class="header__inner">
             {{ partial "logo.html" . }}
 
-            <span class="header__right">
+            <span class="header__right header__right--spaced">
                 {{ if len .Site.Menus }}
                     {{ partial "menu.html" . }}
                     <span class="menu-trigger">
@@ -14,8 +14,8 @@
                     </span>
                 {{ end }}
 
-                {{ partial "language-switch.html" . }}
                 <span class="theme-toggle unselectable">{{ partial "theme-icon.html" . }}</span>
+                {{ partial "language-switch.html" . }}
             </span>
         </span>
     </header>
@@ -27,6 +27,25 @@
         </progress>
     </body>
 </div>
+
+<style>
+.header__right--spaced {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.header__right--spaced .theme-toggle {
+    margin-right: 0.5rem;
+}
+@media (max-width: 684px) {
+    .header__right--spaced {
+        gap: 0.3rem;
+    }
+    .header__right--spaced .theme-toggle {
+        margin-right: 0.3rem;
+    }
+}
+</style>
 
 <script>
 // Geo-detection: redirect Polish users to Polish version on first visit
@@ -54,4 +73,3 @@
     }
 })();
 </script>
-

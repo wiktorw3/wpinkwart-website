@@ -2,25 +2,25 @@
     <div class="post-wrapper">
         <main class="post">
 
-                <div class="post-info" id="post-info">
+                <div class="post-info post-info--top" id="post-info">
 
                     {{- with .Params.tags }}
-                        <p>
+                        <p class="post-tags">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
                             {{- range . -}}
-                                <span class="tag"><a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{.}}</a></span>
+                                <span class="tag"><a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">#{{.}}</a></span>
                             {{- end }}
                         </p>
                     {{- end }}
 
                     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>{{ i18n "readingTime" .Page.ReadingTime }}
 
-                    {{ if .IsTranslated }}
-                        | {{ i18n "postAvailable" }}
+                    {{- if and .IsTranslated (ne .Site.Language.Lang "pl") }}
+                        | Also available in 
                         {{ range .Translations }}
-                            <a href="{{ .Permalink }}"><span class="flag flag-icon flag-icon-{{ index $.Site.Data.langFlags (.Lang) }} flag-icon-squared"></span></a>
+                            <a href="{{ .Permalink }}" class="translation-link">🇵🇱</a>
                         {{ end}}
-                    {{ end }}
+                    {{- end }}
 
                     </p>
                 </div>
@@ -91,6 +91,27 @@
     </div>
 
     <style>
+    .post-info--top {
+        padding-top: 1rem;
+        margin-top: 0.5rem;
+    }
+    
+    .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.25rem;
+    }
+    
+    .post-tags .tag {
+        margin-right: 0.25rem;
+    }
+    
+    .translation-link {
+        font-size: 1.1rem;
+        text-decoration: none;
+    }
+
     .pagination__buttons--styled {
         display: flex;
         flex-direction: column;
@@ -142,4 +163,3 @@
     }
     </style>
 {{ end }}
-
