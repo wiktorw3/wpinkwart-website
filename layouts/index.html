@@ -50,13 +50,18 @@
 
     <script>
     (function() {
-        const words = [
-            {{ if eq .Site.Language.Lang "pl" }}
-            "Technologia", "Produkt", "Prawo", "Muzyka"
-            {{ else }}
-            "Tech", "Product", "Law", "Music"
-            {{ end }}
-        ];
+        const isMobile = window.innerWidth <= 768;
+        const lang = "{{ .Site.Language.Lang }}";
+        
+        let words;
+        if (lang === "pl") {
+            // Use shorter words on mobile for Polish
+            words = isMobile 
+                ? ["Tech", "Produkt", "Prawo", "Muzyka"]
+                : ["Technologia", "Produkt", "Prawo", "Muzyka"];
+        } else {
+            words = ["Tech", "Product", "Law", "Music"];
+        }
         
         const typedElement = document.getElementById('typed-text');
         const separator = " · ";
@@ -64,19 +69,16 @@
         let wordIndex = 0;
         let charIndex = 0;
         let currentText = "";
-        let isDeleting = false;
-        let isPaused = false;
         
         const typeSpeed = 80;
         const pauseAfterWord = 600;
-        const pauseAfterAll = 2000;
         
         function type() {
             if (wordIndex >= words.length) {
-                // All words typed, pause then stay
+                // All words typed, hide cursor
                 setTimeout(() => {
-                    // Keep the final text
-                }, pauseAfterAll);
+                    document.querySelector('.cursor').style.display = 'none';
+                }, 1500);
                 return;
             }
             
@@ -102,11 +104,6 @@
                 
                 if (wordIndex < words.length) {
                     setTimeout(type, pauseAfterWord);
-                } else {
-                    // Hide cursor after all done
-                    setTimeout(() => {
-                        document.querySelector('.cursor').style.display = 'none';
-                    }, 1500);
                 }
             }
         }
