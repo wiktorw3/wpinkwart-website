@@ -60,7 +60,7 @@ disableHugoGeneratorInject = false
   keywords = ""
   images = [""]
 
-  homeSubtitle = "Law meets Tech meets Music"
+  homeSubtitle = "Tech · Product · Law · Music"
 
   # Prefix of link to the git commit detail page. GitInfo must be enabled.
   # gitUrl = ""
@@ -151,6 +151,7 @@ disableHugoGeneratorInject = false
     weight = 2
     [languages.pl.params]
       subtitle  = ""
+      homeSubtitle = "Technologia · Produkt · Prawo · Muzyka"
       copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
     [[languages.pl.menu.main]]
       identifier = "about"
