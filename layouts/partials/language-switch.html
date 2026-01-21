@@ -1,0 +1,33 @@
+{{ if gt (len .Site.Languages) 1 }}
+<span class="language-toggle unselectable">
+    {{ range .Site.Languages }}
+        {{ if eq $.Site.Language.Lang .Lang }}
+            <span class="lang-current">{{ .LanguageName }}</span>
+        {{ else }}
+            <a href="{{ $.RelPermalink | absLangURL }}" class="lang-link" data-lang="{{ .Lang }}">{{ .LanguageName }}</a>
+        {{ end }}
+    {{ end }}
+</span>
+<style>
+.language-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-right: 0.8rem;
+    font-size: 1.2rem;
+}
+.lang-current {
+    opacity: 1;
+    cursor: default;
+}
+.lang-link {
+    opacity: 0.5;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+.lang-link:hover {
+    opacity: 1;
+}
+</style>
+{{ end }}
+

@@ -1,0 +1,57 @@
+<div id="navbar">
+    <header class="header">
+        <span class="header__inner">
+            {{ partial "logo.html" . }}
+
+            <span class="header__right">
+                {{ if len .Site.Menus }}
+                    {{ partial "menu.html" . }}
+                    <span class="menu-trigger">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                        </svg>
+                    </span>
+                {{ end }}
+
+                {{ partial "language-switch.html" . }}
+                <span class="theme-toggle unselectable">{{ partial "theme-icon.html" . }}</span>
+            </span>
+        </span>
+    </header>
+    <body>
+        <progress value="0">
+            <div class="progress-container">
+                <span class="progress-bar"></span>
+            </div>
+        </progress>
+    </body>
+</div>
+
+<script>
+// Geo-detection: redirect Polish users to Polish version on first visit
+(function() {
+    const hasVisited = localStorage.getItem('wpinkwart_lang_set');
+    if (hasVisited) return;
+    
+    // Check if we're already on Polish version
+    if (window.location.pathname.startsWith('/pl/')) {
+        localStorage.setItem('wpinkwart_lang_set', 'true');
+        return;
+    }
+    
+    // Use timezone as a proxy for Poland detection
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const polishTimezones = ['Europe/Warsaw'];
+    
+    if (polishTimezones.includes(tz)) {
+        localStorage.setItem('wpinkwart_lang_set', 'true');
+        // Redirect to Polish version
+        const currentPath = window.location.pathname;
+        window.location.href = '/pl' + currentPath;
+    } else {
+        localStorage.setItem('wpinkwart_lang_set', 'true');
+    }
+})();
+</script>
+

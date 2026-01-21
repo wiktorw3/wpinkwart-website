@@ -131,17 +131,32 @@ disableHugoGeneratorInject = false
   
 
 [languages]
-  [languages.en.params]
-    subtitle  = ""
-    weight    = 1
-    copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+  [languages.en]
+    languageName = "🇬🇧"
+    weight = 1
+    [languages.en.params]
+      subtitle  = ""
+      copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+    [[languages.en.menu.main]]
+      identifier = "about"
+      name       = "About Me"
+      url        = "about/"
+    [[languages.en.menu.main]]
+      identifier = "posts"
+      name       = "Posts"
+      url        = "posts/"
 
-[menu]
-  [[menu.main]]
-    identifier = "about"
-    name       = "About Me"
-    url        = "about/"
-  [[menu.main]]
-    identifier = "posts"
-    name       = "Posts"
-    url        = "posts/"
+  [languages.pl]
+    languageName = "🇵🇱"
+    weight = 2
+    [languages.pl.params]
+      subtitle  = ""
+      copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+    [[languages.pl.menu.main]]
+      identifier = "about"
+      name       = "O mnie"
+      url        = "about/"
+    [[languages.pl.menu.main]]
+      identifier = "posts"
+      name       = "Posty"
+      url        = "posts/"
