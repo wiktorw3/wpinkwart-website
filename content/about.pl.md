@@ -16,15 +16,15 @@ Po ukończeniu Liceum im. Stefana Batorego w Warszawie przeprowadziłem się do 
 
 Pracę licencjacką poświęciłem tematyce blockchaina i RODO. Odbyłem również staż w Ambasadzie RP w Australii oraz współtworzyłem studencką organizację skoncentrowaną na blockchainie i web3.
 
-## Praca i budowanie
+## Praca i projekty
 ---
-Karierę zawodową rozpocząłem w compliance i risk w Londynie, stopniowo przechodząc przez role takie jak MLRO, DPO oraz Senior Compliance Officer. Zajmowałem się skalowaniem zespołów oraz budową systemów compliance w środowiskach fintechowych.
+Karierę zawodową rozpocząłem w obszarze compliance i risk w Londynie, przechodząc przez role takie jak MLRO, DPO oraz Senior Compliance Officer. Pracowałem przy projektowaniu i wdrażaniu systemów compliance i risk w fintechach, łącząc wymagania regulacyjne z produktowymi rozwiązaniami.
 
-Z czasem coraz bardziej angażowałem się w techniczną stronę produktów - pracując z danymi, analityką, SQL-em i Pythonem - oraz zacząłem budować własne narzędzia i projekty poboczne. To naturalnie doprowadziło mnie do Product Managementu, ze naciskiem na produkty w branży fintech.
+Z czasem coraz bardziej interesowało mnie, jak te systemy faktycznie działają od strony technicznej i produktowej. Zacząłem pracować bliżej z danymi, analizą i logiką systemów, a równolegle budować własne narzędzia i projekty. To naturalnie skierowało mnie w stronę product managementu, szczególnie w obszarze fintechu.
 
-Równolegle udzielam się w projektach open source, biorę udział w hackathonach oraz rozwijam **Wotum** - produkt, którego celem jest ułatwienie śledzenia danych politycznych, głosowań oraz procesów decyzyjnych w sferze publicznej.
+Równolegle udzielam się w projektach open source, biorę udział w hackathonach oraz rozwijam **Wotum** — produkt, którego celem jest ułatwienie śledzenia danych politycznych, głosowań oraz procesów decyzyjnych w sferze publicznej.
 
 ## Muzyka
 ---
-Poza technologią tworzę również muzykę pod pseudonimem **Departament Magii**.
+Poza technologią, razem z przyjaciółmi tworzę muzykę pod pseudonimem **DM (Departament Magii)**.
 
