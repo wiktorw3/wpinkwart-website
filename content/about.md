@@ -16,14 +16,14 @@ After finishing Batory High School in Warsaw, I moved to the Netherlands, where 
 
 I wrote my bachelor thesis on blockchain and GDPR, interned at the Polish Embassy in Australia, and co-founded a student organization focused on blockchain and web3.
 
-## Work & Building
+## Work and projects
 ---
-I began working in Compliance and Risk in London, advancing into roles such as MLRO, DPO, and Senior Compliance Officer, where I worked on scaling teams and building compliance systems in fintech environments.
+I began working in Compliance and Risk in London, advancing into roles such as MLRO, DPO, and Senior Compliance Officer. I worked on designing and implementing compliance and risk systems in fintech, connecting regulatory requirements with practical, product-level solutions.
 
-Over time, I became increasingly involved on the technical side of products — working with data, analytics, SQL, and Python — and began building my own tools and side projects. This led me into technical product management, with a focus on systems that are both compliant and functional.
+Over time, I became increasingly interested in how these systems actually work from a technical and product perspective. I started working closer to data, system logic, and product design, while also building my own tools and side projects. This naturally led me into product management, with a focus on fintech products.
 
-On the side, I contribute to open-source projects, take part in hackathons, and build **Wotum** — a product focused on making political data, voting records, and public decision-making easier to follow.
+Alongside my professional work, I contribute to open-source projects, take part in hackathons, and build **Wotum** — a product aimed at making political data, voting records, and public decision-making easier to follow.
 
 ## Music
 ---
-I also make music under the name **Departament Magii**.
+Outside of technology, I make music with friends under the name **DM (Departament Magii)**.
